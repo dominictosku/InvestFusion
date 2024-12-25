@@ -1,0 +1,23 @@
+﻿@using InvestFusion.Core.Models
+@inject DialogService DialogService
+
+<h3>Add Account</h3>
+
+<RadzenTemplateForm Data="model" Submit="((Bank bank) => OnSubmit(bank))">
+	<RadzenStack>
+		<RadzenLabel Text="Name" />
+		<RadzenTextBox @bind-Value="model.Name" />
+		<RadzenButton class="m-2" Text="Create" ButtonType="ButtonType.Submit" />
+	</RadzenStack>
+</RadzenTemplateForm>
+
+
+@code {
+	public Bank model = new();
+
+	public async Task OnSubmit(Bank bank)
+	{
+		await Task.Yield();
+		DialogService.Close(model);
+	}
+}

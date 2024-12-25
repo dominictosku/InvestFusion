@@ -1,5 +1,6 @@
 ﻿using InvestFusion.Core.Interfaces;
 using InvestFusion.Core.Services;
+using InvestFusion.Services;
 using Microsoft.Extensions.Logging;
 using Radzen;
 
@@ -22,6 +23,8 @@ namespace InvestFusion
             builder.Services.AddScoped<ContextMenuService>();
             builder.Services.AddScoped<DialogService>();
             builder.Services.AddTransient<IExcelService, ExcelService>();
+            builder.Services.AddTransient<AccountService>();
+            builder.Services.AddTransient<AccountTransactionService>();
 
 #if DEBUG
             builder.Services.AddBlazorWebViewDeveloperTools();

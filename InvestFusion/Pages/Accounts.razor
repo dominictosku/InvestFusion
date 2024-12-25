@@ -1,0 +1,48 @@
+﻿@page "/accounts"
+@using InvestFusion.Components.Accounts
+@using InvestFusion.Core.Models
+@using InvestFusion.Services
+@inject DialogService DialogService
+@inject AccountService AccountService
+
+<h3>Accounts</h3>
+
+<RadzenButton Text="Add" Click="AddAccount" />
+<RadzenDataGrid @ref="grid" LoadData="LoadData" AllowFiltering="true" AllowColumnResize="true" AllowAlternatingRows="false" FilterMode="FilterMode.Advanced" AllowSorting="true" PageSize="5" AllowPaging="true" PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true"
+                Data="@banks" ColumnWidth="300px" LogicalFilterOperator="LogicalFilterOperator.Or">
+    <Columns>
+        <RadzenDataGridColumn Property="@nameof(Bank.Id)" Filterable="false" Title="ID" Frozen="true" Width="10px" TextAlign="TextAlign.Center" />
+        <RadzenDataGridColumn Title="Photo" Frozen="true" Sortable="false" Filterable="false" Width="30px" TextAlign="TextAlign.Center" >
+            <Template Context="data">
+                <RadzenImage Path="" class="rz-gravatar" AlternateText="@(data.Name)" />
+            </Template>
+        </RadzenDataGridColumn>
+        <RadzenDataGridColumn Property="@nameof(Bank.Name)" Title="Name" Frozen="true" />
+    </Columns>
+</RadzenDataGrid>
+
+@code {
+    RadzenDataGrid<Bank> grid;
+    IQueryable<Bank> banks;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        await LoadData();
+    }
+
+    async Task LoadData()
+    {
+        var result = await AccountService.GetItemsAsync();
+        banks = result.AsQueryable();
+    }
+
+    async Task AddAccount()
+    {
+        Bank? model = await DialogService.OpenAsync<AddAccount>("Add Account");
+        if (model is null) return;
+
+        await AccountService.SaveItemAsync(model);
+        await grid.Reload();
+    }
+}

@@ -5,9 +5,9 @@ VisualStudioVersion = 17.10.35122.118
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InvestFusion", "InvestFusion\InvestFusion.csproj", "{0F8075F5-A411-4784-AF46-6B6CA4DC6E60}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Unit", "Test.Unit\Test.Unit.csproj", "{28F0E9B9-1AF0-4E5E-AE31-1433C1A7CE66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.Unit", "Test.Unit\Test.Unit.csproj", "{28F0E9B9-1AF0-4E5E-AE31-1433C1A7CE66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvestFusion.Core", "InvestFusion.Core\InvestFusion.Core.csproj", "{3AF6E34D-E982-4E79-93FE-E196DF4054DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InvestFusion.Core", "InvestFusion.Core\InvestFusion.Core.csproj", "{3AF6E34D-E982-4E79-93FE-E196DF4054DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
